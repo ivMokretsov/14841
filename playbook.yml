@@ -4,10 +4,19 @@
   become: true
   gather_facts: true
 
-  vars:
-    my_variable: "Hello, World!"
-
   tasks:
-    - name: Display the variable
-      debug:
-        msg: "{{ my_variable }}"
+    - name: Get all templates from AAP
+      ansible.controller.export:
+        job_templates: 'all'
+      register: aap_templates
+
+    - debug:
+        var: aap_templates.assets.job_templates[0].execution_environment
+
+    - set_fact:
+        ee: ""
+
+    - name: Create templates
+      ansible.controller.job_template:
+        name: "{{ aap_templates.assets.job_templates[0].name }}"
+        execution_environment: "{{ ee }}"
