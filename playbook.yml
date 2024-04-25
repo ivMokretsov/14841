@@ -1,0 +1,11 @@
+---
+- name: Simple Ansible Playbook
+  gather_facts: true
+
+  vars:
+    my_variable: "Hello, World!"
+
+  tasks:
+    - name: Display the variable
+      debug:
+        msg: "{{ my_variable }}"
