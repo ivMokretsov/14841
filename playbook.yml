@@ -6,7 +6,7 @@
 
   tasks:
     - name: Get all templates from AAP
-      ansible.controller.export:
+      awx.awx.export:
         job_templates: 'all'
       register: aap_templates
 
@@ -17,6 +17,6 @@
         ee: ""
 
     - name: Create templates
-      ansible.controller.job_template:
+      awx.awx.job_template:
         name: "{{ aap_templates.assets.job_templates[0].name }}"
         execution_environment: "{{ ee }}"
