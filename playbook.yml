@@ -8,6 +8,9 @@
     - name: Get all templates from AAP
       awx.awx.export:
         job_templates: 'all'
+        controller_host: "{{ CONTROLLER_HOST }}"
+        controller_oauthtoken: "{{ CONTROLLER_OAUTH_TOKEN }}"
+        validate_certs: "{{ CONTROLLER_VERIFY_SSL }}"
       register: aap_templates
 
     - debug:
@@ -19,4 +22,7 @@
     - name: Create templates
       awx.awx.job_template:
         name: "{{ aap_templates.assets.job_templates[0].name }}"
+        controller_host: "{{ CONTROLLER_HOST }}"
+        controller_oauthtoken: "{{ CONTROLLER_OAUTH_TOKEN }}"
+        validate_certs: "{{ CONTROLLER_VERIFY_SSL }}"
         execution_environment: "{{ ee }}"
