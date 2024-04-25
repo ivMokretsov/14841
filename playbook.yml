@@ -11,7 +11,7 @@
         controller_host: "{{ CONTROLLER_HOST }}"
         controller_oauthtoken: "{{ CONTROLLER_OAUTH_TOKEN }}"
         controller_password: "{{ CONTROLLER_PASSWORD }}"
-        controller_username: "{{ CONTROLLER_PASSWORD }}"
+        controller_username: "{{ CONTROLLER_USERNAME }}"
         validate_certs: "{{ CONTROLLER_VERIFY_SSL }}"
       register: aap_templates
 
@@ -19,7 +19,7 @@
         var: aap_templates.assets.job_templates[0].execution_environment
 
     - set_fact:
-        ee: ""
+        ee: null  # Использование null для явного указания отсутствия среды выполнения
 
     - name: Create templates
       awx.awx.job_template:
