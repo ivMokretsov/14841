@@ -1,4 +1,0 @@
-tasks:
-  - name: Display the variable
-    debug:
-      msg: "hello"
