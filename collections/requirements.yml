@@ -1,2 +1,3 @@
 collections:
   - name: awx.awx
+    version: 3.7.0

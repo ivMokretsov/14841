@@ -19,7 +19,7 @@
         var: aap_templates.assets.job_templates[0].execution_environment
 
     - set_fact:
-        ee: null  # Использование null для явного указания отсутствия среды выполнения
+        ee: ""  # Использование null для явного указания отсутствия среды выполнения
 
     - name: Create templates
       awx.awx.job_template:
